@@ -85,7 +85,7 @@ class Client:
 	def get_cover(self, id, dim):
 		j = self.api_call(self.base + "v2.2/albums/" + id + "/images", 'cover')
 		dim = str(dim) + "x" + str(dim)
-		# The API will sometimes won't return any covers. Secondary endpoint.
+		# The API will sometimes doesn't return any covers. Secondary endpoint.
 		if j['images']:	
 			pre_cov = j['images'][0]['url'].split('_')[0]
 			cov = 'http://static.rhap.com/img/' + dim + "/" + "/".join(pre_cov.split('/')[5:]) + "_" + dim + ".jpg"
