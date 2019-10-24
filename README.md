@@ -1,6 +1,6 @@
 # MQ-DL
 Tool written in Python to download streamable tracks from mora qualitas (モーラクオリタス).   
-モーラ クオリタスのからトラックをダウンロードするためにPythonで書かれたツールです。 
+モーラ クオリタスからトラックをダウンロードするためにPythonで書かれたツールです。 
 
 ![](https://orion.feralhosting.com/sorrow/MQ-01.jpg)
 
