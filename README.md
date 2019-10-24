@@ -2,8 +2,11 @@
 Tool written in Python to download streamable tracks from mora qualitas (モーラクオリタス).   
 モーラ クオリタスからトラックをダウンロードするためにPythonで書かれたツールです。 
 
-Beta build. Missing CLI support, albums only, rough code etc. More builds coming soon
-  
+Beta build. Missing CLI support, albums only, rough code etc. More builds coming soon.   
+
+Subscription required.
+**予約が必要です。**
+
 If you need to get in touch: Sorrow#5631, [Reddit](https://www.reddit.com/user/Sorrow446)
 
 # Disclaimer
