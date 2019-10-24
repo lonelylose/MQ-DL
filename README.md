@@ -1,4 +1,4 @@
-# Idagio-DL
+# MQ-DL
 Tool written in Python to download streamable tracks from mora qualitas (モーラクオリタス).   
 モーラ クオリタスからトラックをダウンロードするためにPythonで書かれたツールです。 
 
