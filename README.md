@@ -2,6 +2,8 @@
 Tool written in Python to download streamable tracks from mora qualitas (モーラクオリタス).   
 モーラ クオリタスからトラックをダウンロードするためにPythonで書かれたツールです。 
 
+![](https://orion.feralhosting.com/sorrow/MQ-01.jpg)
+
 **[Windows binaries](https://github.com/Sorrow446/MQ-DL/releases)**  
 Beta build. Missing CLI support, albums only, rough code etc. More builds coming soon.   
 
