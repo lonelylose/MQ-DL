@@ -31,14 +31,7 @@ class Client:
 				'track':kwargs['id']}
 			headers={
 				'Authorization':'Bearer ' + self.token,
-				'Referer':kwargs['ref']}
-		elif method == "get_id":
-			url = '' + epoint
-			params={
-				'albumShortcut':kwargs['al_scut'],
-				'artistShortcut':kwargs['ar_scut'],
-				'developerKey':'5C8F8G9G8B4D0E5J'}
-			headers = ""	
+				'Referer':kwargs['ref']}	
 		elif method in ['al_meta', 'tr_meta']:
 			params={
 				'catalog':'JP_MORAQUALITAS',
@@ -54,17 +47,14 @@ class Client:
 				raise AuthenticationError('Invalid credentials.')
 		else:
 			r = self.session.get(epoint, params=params, headers=headers)
+			print(epoint)
+		r.raise_for_status()
 		return r.json()
 
 	def auth(self, email, pwd):
 		j = self.api_call(self.base + 'oauth/token', 'auth', email=email, pwd=pwd)
 		self.token = j['access_token']
 		self.ref_token = j['refresh_token']
-		return j
-		
-	def get_id(self, ar_scut, al_scut):
-		j = self.api_call('http://direct.rhapsody.com/metadata/data/methods/getIdByShortcut.js?', 
-			'get_id', ar_scut=ar_scut, al_scut=al_scut)
 		return j
 		
 	def get_album_meta(self, id, lang):
@@ -85,7 +75,7 @@ class Client:
 	def get_cover(self, id, dim):
 		j = self.api_call(self.base + "v2.2/albums/" + id + "/images", 'cover')
 		dim = str(dim) + "x" + str(dim)
-		# The API will sometimes doesn't return any covers. Secondary endpoint.
+		# The API sometimes doesn't return any covers. Secondary endpoint.
 		if j['images']:	
 			pre_cov = j['images'][0]['url'].split('_')[0]
 			cov = 'http://static.rhap.com/img/' + dim + "/" + "/".join(pre_cov.split('/')[5:]) + "_" + dim + ".jpg"
