@@ -200,19 +200,16 @@ def main():
 		url = input("Input URL:").strip()
 		if not url:	
 			os_cmds('c')
-			continue
-			
+			continue		
 		elif not url.startswith('https://content.mora-qualitas.com/artist/', 0):
 			print("Invalid URL.")
 			time.sleep(1)
 			os_cmds('c')
 			continue	
-		if url in '/track/':
-			print("Support for downloading single tracks coming soon.\n"
-			"Returning to URL input screen...")
-		if url in '/playlist/':
-			print("Support for downloading playlists coming soon.\n"
-			"Returning to URL input screen...")
+		if '/track/' in url:
+			raise NotImplementedError('Support for downloading single tracks coming soon.')
+		if '/playlist/' in url:
+			raise NotImplementedError('Support for downloading playlists coming soon.')
 		url = url.split('?')[0]
 		ref = 'http://localhost:19330/' + "/".join(url.split('/')[3:7])
 		os_cmds('c')
