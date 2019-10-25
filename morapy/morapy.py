@@ -47,7 +47,6 @@ class Client:
 				raise AuthenticationError('Invalid credentials.')
 		else:
 			r = self.session.get(epoint, params=params, headers=headers)
-			print(epoint)
 		r.raise_for_status()
 		return r.json()
 
