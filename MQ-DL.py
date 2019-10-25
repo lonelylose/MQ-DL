@@ -198,14 +198,15 @@ def main():
 	print("Signed in successfully.\n")
 	while True:		
 		url = input("Input URL:").strip()
-		if not url:
-			continue
+		if not url:	
 			os_cmds('c')
+			continue
+			
 		elif not url.startswith('https://content.mora-qualitas.com/artist/', 0):
 			print("Invalid URL.")
 			time.sleep(1)
-			continue
 			os_cmds('c')
+			continue	
 		if url in '/track/':
 			print("Support for downloading single tracks coming soon.\n"
 			"Returning to URL input screen...")
@@ -215,7 +216,9 @@ def main():
 		url = url.split('?')[0]
 		ref = 'http://localhost:19330/' + "/".join(url.split('/')[3:7])
 		os_cmds('c')
-		id = client.get_id(url.split('/')[4], url.split('/')[-1])['id']
+		id = url.split('/')[-1]
+		if not id.lower().startswith("alb"):
+			id = "alb." + url.split('-')[-1]
 		al_src_meta = client.get_album_meta(id, cfg['language'])
 		tr_src_meta = client.get_track_meta(id, cfg['language'])
 		al_meta = parse_meta(al_src_meta, "", "")
@@ -240,10 +243,10 @@ def main():
 			post = os.path.join(album_fol_s, str(num).zfill(2) + scheme + sanitize(title) + ext)	
 			exist_check(pre)
 			exist_check(post)
-			url = client.get_track_url(track['id'], br, fmt, ref)['url']
+			url = client.get_track_url(track['id'], br, fmt, ref)
 			if not url:
 				continue
-			download(url, pre, str(num), str(tot), title, str(bd), str(br), str(sr), fmt)
+			download(url['url'], pre, str(num), str(tot), title, str(bd), str(br), str(sr), fmt)
 			write_tags(pre, final_meta, cov, com, fmt)
 			try:
 				os.rename(pre, post)
